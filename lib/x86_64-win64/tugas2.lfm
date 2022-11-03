@@ -22,4 +22,8 @@ object Form1: TForm1
     Width = 146
     AutoSize = True
   end
+  object OpenPictureDialog1: TOpenPictureDialog
+    Left = 312
+    Top = 24
+  end
 end

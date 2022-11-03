@@ -5,7 +5,8 @@ unit tugas2;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
+  ExtDlgs;
 
 type
 
@@ -14,6 +15,7 @@ type
   TForm1 = class(TForm)
     btnLoad: TButton;
     imgSrc: TImage;
+    OpenPictureDialog1: TOpenPictureDialog;
   private
 
   public
