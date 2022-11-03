@@ -13,6 +13,7 @@ object Form1: TForm1
     Top = 32
     Width = 75
     Caption = 'Load'
+    OnClick = btnLoadClick
     TabOrder = 0
   end
   object imgSrc: TImage
