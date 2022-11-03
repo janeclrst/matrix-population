@@ -15,4 +15,11 @@ object Form1: TForm1
     Caption = 'Load'
     TabOrder = 0
   end
+  object imgSrc: TImage
+    Left = 48
+    Height = 146
+    Top = 88
+    Width = 146
+    AutoSize = True
+  end
 end
