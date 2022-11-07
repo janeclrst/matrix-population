@@ -30,6 +30,9 @@ implementation
 
 {$R *.lfm}
 
+uses
+  windows, math;
+
 { TForm1 }
 
 var
