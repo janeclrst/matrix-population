@@ -16,6 +16,8 @@ type
     btnLoad: TButton;
     btnPopulation: TButton;
     imgSrc: TImage;
+    ListBox: TListBox;
+    Memo: TMemo;
     OpenPictureDialog1: TOpenPictureDialog;
     procedure btnLoadClick(Sender: TObject);
     procedure btnPopulationClick(Sender: TObject);
@@ -85,6 +87,7 @@ procedure TForm1.btnPopulationClick(Sender: TObject);
 var
   x, y : integer;
   i, j : integer;
+  fitur : integer;
 
 begin
    row := round(Width / 5);
@@ -116,6 +119,16 @@ begin
                                 end;
                         end;
                 end;
+   end;
+
+   fitur := 1;
+   for y := 0 to imgSrc.Height-1 do
+   begin
+     for x := 0 to imgSrc.Width-1 do
+     begin
+        ListBox.Items.Add('Fitur ' + IntToStr(fitur) + ' : ' + IntToStr(pop[x,y]));
+        fitur += 1;
+     end;
    end;
 end;
 
