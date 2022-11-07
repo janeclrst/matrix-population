@@ -14,9 +14,12 @@ type
 
   TForm1 = class(TForm)
     btnLoad: TButton;
+    btnPopulation: TButton;
     imgSrc: TImage;
     OpenPictureDialog1: TOpenPictureDialog;
     procedure btnLoadClick(Sender: TObject);
+    procedure btnPopulationClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -38,6 +41,7 @@ uses
 var
   bitmapR, bitmapG, bitmapB, BitmapGray, BitmapBiner : array[0..1000, 0..1000] of integer;
   histo : array[0..255] of integer;
+  pop : array[0..100, 0..100] of integer;
 
 procedure TForm1.btnLoadClick(Sender: TObject);
 var
@@ -74,6 +78,16 @@ begin
       inc(histo[bitmapGray[i,j]]);
     end;
   end;
+end;
+
+procedure TForm1.btnPopulationClick(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+
 end;
 
 end.

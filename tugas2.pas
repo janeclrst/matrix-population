@@ -42,6 +42,7 @@ var
   bitmapR, bitmapG, bitmapB, BitmapGray, BitmapBiner : array[0..1000, 0..1000] of integer;
   histo : array[0..255] of integer;
   pop : array[0..100, 0..100] of integer;
+  max1, min1, max2, min2, row, col : integer;
 
 procedure TForm1.btnLoadClick(Sender: TObject);
 var
