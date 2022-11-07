@@ -16,6 +16,7 @@ type
     btnLoad: TButton;
     btnPopulation: TButton;
     imgSrc: TImage;
+    Memo1: TMemo;
     OpenPictureDialog1: TOpenPictureDialog;
     procedure btnLoadClick(Sender: TObject);
     procedure btnPopulationClick(Sender: TObject);
