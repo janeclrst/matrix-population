@@ -17,7 +17,6 @@ type
     btnPopulation: TButton;
     imgSrc: TImage;
     ListBox: TListBox;
-    Memo: TMemo;
     OpenPictureDialog1: TOpenPictureDialog;
     procedure btnLoadClick(Sender: TObject);
     procedure btnPopulationClick(Sender: TObject);
@@ -43,7 +42,8 @@ uses
 var
   bitmapR, bitmapG, bitmapB, BitmapGray, BitmapBiner : array[0..1000, 0..1000] of integer;
   histo : array[0..255] of integer;
-  pop : array[0..100, 0..100] of integer;
+  pop   : array[0..100, 0..100] of integer;
+  population : array[0..100, 0..100] of integer;
   max1, min1, max2, min2, row, col : integer;
 
 procedure TForm1.btnLoadClick(Sender: TObject);
@@ -90,43 +90,56 @@ var
   fitur : integer;
 
 begin
-   row := round(Width / 5);
-   col := round(Height / 5);
+   //jumlah baris dan kolom matriks populasi
+   row := round(imgSrc.Height / 5);
+   col := round(imgSrc.Width / 5);
+
+   //batas bawah dan atas setiap area lokal
+   min1 := 0;
+   min2 := 0;
+   max1 := 4;
+   max2 := 4;
+
+   //mencari jumlah piksel hitam dalam setiap area berukuran 5x5
    for y := 0 to col-1 do
    begin
 		for x := 0 to row-1 do
                 begin
-			for j := min1 to imgSrc.Height - 1 do
+			for j := min1 to max1 do
                         begin
-				for i := min2 to imgSrc.Width - 1 do
+				for i := min2 to max2 do
                                 begin
 					if BitmapBiner[i,j] = 0 then
                                         begin
-						pop[x,y] += 1;
+						inc(pop[x,y]);
                                         end;
-                                        if i = max2 then
-                                        begin
-						break;
-                                        end;
-                                end;
-                                if (i = max2) AND (j = max1) then
-                                begin
-						max2 += 5;
-						max1 += 5;
-						min1 += 5;
-						min2 += 5;
-						break;
                                 end;
                         end;
+                        max2 := max2 +  5;
+			min2 := min2 +  5;
                 end;
+                    max1 := max1 +  5;
+                    min1 := min1 +  5;
+                    max2 := 4;
+                    min2 := 0;
    end;
 
-   fitur := 1;
-   for y := 0 to imgSrc.Height-1 do
+   //ubah nilai ke persentase
+   for y := 0 to row-1 do
    begin
-     for x := 0 to imgSrc.Width-1 do
+        for x := 0 to col-1 do
+        begin
+             population[x,y] := (pop[x,y] * 100) div 25
+        end;
+   end;
+
+   //menampilkan persentase fitur (matriks populasi) di ListBox
+   fitur := 1;
+   for y := 0 to row-1 do
+   begin
+     for x := 0 to col-1 do
      begin
-        ListBox.Items.Add('Fitur ' + IntToStr(fitur) + ' : ' + IntToStr(pop[x,y]));
+        ListBox.Items.Add('Fitur ' + IntToStr(fitur) + ' : ' + IntToStr(pop[x,y]) + '%');
         fitur += 1;
      end;
    end;
