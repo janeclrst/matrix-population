@@ -42,6 +42,7 @@ var
   bitmapR, bitmapG, bitmapB, BitmapGray, BitmapBiner : array[0..1000, 0..1000] of integer;
   histo : array[0..255] of integer;
   pop : array[0..100, 0..100] of integer;
+  max1, min1, max2, min2, row, col : integer;
 
 procedure TForm1.btnLoadClick(Sender: TObject);
 var
@@ -81,8 +82,27 @@ begin
 end;
 
 procedure TForm1.btnPopulationClick(Sender: TObject);
-begin
+var
+  x, y : integer;
+  i, j : integer;
 
+begin
+   row := round(Width / 5);
+   col := round(Height / 5);
+   for y := 0 to col-1 do
+		for x := 0 to row-1 do
+			for j := min1 to imgSrc.Height - 1 do
+				for i := min2 to imgSrc.Width - 1 do
+					if BitmapBiner[i,j] = 0 then
+						pop[x,y] += 1;
+					if i = max2 then
+						break;
+				if (i = max2) AND (j = max1) then
+						max2 += 5;
+						max1 += 5;
+						min1 += 5;
+						min2 += 5;
+						break;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

@@ -82,8 +82,41 @@ begin
 end;
 
 procedure TForm1.btnPopulationClick(Sender: TObject);
-begin
+var
+  x, y : integer;
+  i, j : integer;
 
+begin
+   row := round(Width / 5);
+   col := round(Height / 5);
+   for y := 0 to col-1 do
+   begin
+		for x := 0 to row-1 do
+                begin
+			for j := min1 to imgSrc.Height - 1 do
+                        begin
+				for i := min2 to imgSrc.Width - 1 do
+                                begin
+					if BitmapBiner[i,j] = 0 then
+                                        begin
+						pop[x,y] += 1;
+                                        end;
+                                        if i = max2 then
+                                        begin
+						break;
+                                        end;
+                                end;
+                                if (i = max2) AND (j = max1) then
+                                begin
+						max2 += 5;
+						max1 += 5;
+						min1 += 5;
+						min2 += 5;
+						break;
+                                end;
+                        end;
+                end;
+   end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
